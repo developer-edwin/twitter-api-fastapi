@@ -120,7 +120,9 @@ def login():
     tags=["Users"]
 )
 def show_all_users():
-    pass
+    with open("users.json", "r", encoding="utf-8") as f:
+        results = json.load(f)
+    return results
 
 ### Show a user
 @app.get(
