@@ -61,7 +61,7 @@ class Tweet(BaseModel):
         max_length=256
     )
     created_at: datetime = Field(default=datetime.now())
-    updated_at: Optional[datetime] = Field(default=None)
+    updated_at: Optional[datetime] = Field(default='0000-00-00 00:00:00')
     by: User = Field(...)
 
 
@@ -176,7 +176,17 @@ def update_a_user():
     tags=["Tweets"]
 )
 def home():
-    return {"Twitter API": "Working!"}
+    """
+    # home
+    
+    ## This path operation shows all tweets in the app
+
+    ### Returns:
+    -json: Return a json list with all tweets in the app
+    """
+    with open("tweets.json", "r", encoding="utf-8") as f:
+        results = json.load(f)
+    return results
 
 ### Post a tweet
 @app.post(
